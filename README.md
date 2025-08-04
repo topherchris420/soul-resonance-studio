@@ -36,8 +36,8 @@ Aethel is a biometric resonance platform that captures real-time voice, facial, 
 
 1. Clone the repository:
 ```bash
-git clone <YOUR_GIT_URL>
-cd <YOUR_PROJECT_NAME>
+git clone <THIS_GIT_URL>
+cd <THIS_PROJECT_NAME>
 ```
 
 2. Install dependencies:
