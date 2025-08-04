@@ -2,7 +2,7 @@
 
 > Transform your biometric essence into evolving audiovisual expressions
 
-Aethel is a cosmic biometric resonance platform that captures real-time voice, facial, and ambient data to generate unique "Soul Prints" - personalized audiovisual signatures that represent your biometric essence.
+Aethel is a biometric resonance platform that captures real-time voice, facial, and ambient data to generate unique "Soul Prints" - personalized audiovisual signatures that represent your biometric essence.
 
 ![Aethel Preview](./public/lovable-uploads/a2be87f6-26ad-4604-9ed1-d1c5f2ffe2fe.png)
 
