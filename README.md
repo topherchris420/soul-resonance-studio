@@ -1,73 +1,183 @@
-# Welcome to your Lovable project
+# Aethel ✨
 
-## Project info
+> Transform your biometric essence into evolving audiovisual expressions
 
-**URL**: https://lovable.dev/projects/1c9eaca6-9264-419d-a2f7-24d1f39a85d5
+Aethel is a cosmic biometric resonance platform that captures real-time voice, facial, and ambient data to generate unique "Soul Prints" - personalized audiovisual signatures that represent your biometric essence.
 
-## How can I edit this code?
+![Aethel Preview](./public/lovable-uploads/a2be87f6-26ad-4604-9ed1-d1c5f2ffe2fe.png)
 
-There are several ways of editing your application.
+## 🌟 Features
 
-**Use Lovable**
+### Real-Time Biometric Capture
+- **Voice Resonance**: Real microphone analysis of vocal patterns and harmonics
+- **Facial Harmonics**: Live camera capture with facial expression analysis
+- **Ambient Rhythms**: Environmental sound pattern detection
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1c9eaca6-9264-419d-a2f7-24d1f39a85d5) and start prompting.
+### Soul Print Generation
+- Generate unique visual and audio signatures from biometric data
+- Real-time visualization with cosmic-themed animations
+- Harmonic frequency analysis and display
+- Personalized biometric profiles
 
-Changes made via Lovable will be committed automatically to this repo.
+### Immersive UI/UX
+- Cosmic-themed design with ethereal animations
+- Responsive mobile-first interface
+- Real-time feedback and visual indicators
+- Engaging interactive elements with glow effects
 
-**Use your preferred IDE**
+## 🚀 Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
+- Node.js (v18 or higher)
+- Modern web browser with camera/microphone permissions
+- HTTPS connection (required for media device access)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Permissions Required
+- **Microphone**: For voice resonance capture
+- **Camera**: For facial harmonics analysis
+- **Audio Output**: For biometric sound synthesis
 
-**Use GitHub Codespaces**
+## 🎯 Usage
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Capturing Your Soul Print
 
-## What technologies are used for this project?
+1. **Choose Capture Mode**: Select between Voice Resonance, Facial Harmonics, or Ambient Rhythms
+2. **Begin Capture**: Click "Begin Soul Capture" to start real-time biometric analysis
+3. **Monitor Readings**: Watch your intensity, resonance, and harmonic frequencies in real-time
+4. **Crystallize**: Click "Crystallize Soul Print" to generate your unique biometric signature
 
-This project is built with:
+### Exploring the Gallery
+- View curated Soul Prints from the community
+- Browse affinity-based recommendations
+- Explore your personal collection
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Profile Management
+- Track your biometric evolution over time
+- Analyze harmonic affinities
+- Monitor collective impact metrics
 
-## How can I deploy this project?
+## 🛠️ Technology Stack
 
-Simply open [Lovable](https://lovable.dev/projects/1c9eaca6-9264-419d-a2f7-24d1f39a85d5) and click on Share -> Publish.
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS with custom cosmic design system
+- **UI Components**: shadcn/ui with Radix primitives
+- **Audio Processing**: Tone.js for sound synthesis
+- **Media Capture**: Web APIs (getUserMedia, Canvas, AudioContext)
+- **Build Tool**: Vite
+- **Backend**: Supabase (authentication, database, storage)
 
-## Can I connect a custom domain to my Lovable project?
+## 🎨 Design System
 
-Yes, you can!
+Aethel uses a cosmic-themed design system with:
+- **Color Palette**: HSL-based cosmic colors (primary: purple, secondary: cyan, accent: turquoise)
+- **Gradients**: Multi-layered cosmic gradients
+- **Animations**: Soul pulse, harmonic waves, cosmic drift effects
+- **Typography**: Thin, ethereal fonts with proper tracking
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🔧 Development
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+```
+
+### Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── ui/             # Reusable UI components
+│   ├── capture-interface.tsx
+│   ├── gallery.tsx
+│   ├── navigation.tsx
+│   └── profile.tsx
+├── hooks/              # Custom React hooks
+│   ├── use-audio-analyzer.ts
+│   ├── use-camera-capture.ts
+│   └── use-sound-synthesizer.ts
+├── lib/                # Utility functions
+├── pages/              # Page components
+└── index.css          # Global styles & design system
+```
+
+### Key Components
+
+- **CaptureInterface**: Main biometric capture interface
+- **SoulPrint**: Animated visualization component
+- **Gallery**: Community and personal Soul Print browser
+- **Navigation**: Top navigation with cosmic styling
+
+### Custom Hooks
+
+- **useAudioAnalyzer**: Real-time audio frequency analysis
+- **useCameraCapture**: Facial expression and metrics capture
+- **useSoundSynthesizer**: Biometric sound generation
+
+## 🎵 Audio Features
+
+- Real-time frequency analysis
+- Biometric sound synthesis
+- Ambient soundscape generation
+- Harmonic visualization
+- Soul Print audio signatures
+
+## 📱 Mobile Support
+
+- Responsive design for all screen sizes
+- Touch-optimized interactions
+- Mobile camera and microphone access
+- Performance optimized for mobile devices
+
+## 🔒 Privacy & Security
+
+- All biometric processing happens locally
+- No data transmitted to external servers
+- User permissions required for device access
+- Data stored locally in browser
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🌟 Acknowledgments
+
+- Built with [Lovable](https://lovable.dev) - AI-powered web development
+- Design inspired by cosmic and biometric themes
+- Audio synthesis powered by [Tone.js](https://tonejs.github.io/)
+- UI components from [shadcn/ui](https://ui.shadcn.com/)
+
+---
+
+**Experience the cosmos within** ✨
