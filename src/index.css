@@ -77,5 +77,26 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    /* Optimize for mobile touch */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Better mobile performance */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+  }
+  
+  /* Ensure proper touch targets on mobile */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve touch responsiveness */
+  .cursor-pointer {
+    touch-action: manipulation;
   }
 }

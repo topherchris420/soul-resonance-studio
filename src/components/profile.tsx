@@ -60,30 +60,30 @@ export const Profile = ({ userSoulPrints = [] }: ProfileProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-cosmic p-8 pt-24">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <div className="min-h-screen bg-gradient-cosmic p-4 sm:p-8 pt-20 sm:pt-24">
+      <div className="max-w-6xl mx-auto space-y-6 sm:space-y-8">
         {/* Profile Header */}
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-4 sm:space-y-6">
           <div className="flex justify-center">
             <SoulPrint
               intensity={userProfile.avgIntensity}
               harmonics={[0.8, 0.6, 0.9, 0.7, 0.5]}
-              className="scale-125"
+              className="scale-110 sm:scale-125"
               isActive={true}
             />
           </div>
           
           <div className="space-y-2">
-            <h1 className="text-4xl font-thin text-foreground tracking-wider">
+            <h1 className="text-2xl sm:text-4xl font-thin text-foreground tracking-wider">
               {userProfile.resonanceName}
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-sm sm:text-base text-muted-foreground">
               {formatDuration(userProfile.joinedDate)}
             </p>
           </div>
 
           {/* Key Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-4xl mx-auto">
             {[
               { 
                 label: 'Soul Prints', 
@@ -110,10 +110,10 @@ export const Profile = ({ userSoulPrints = [] }: ProfileProps) => {
                 color: 'text-primary' 
               }
             ].map(({ label, value, icon: Icon, color }) => (
-              <Card key={label} className="p-6 text-center bg-card/40 backdrop-blur-md border-border/20">
-                <Icon className={cn("w-8 h-8 mx-auto mb-3", color)} />
-                <div className="text-2xl font-light text-foreground mb-1">{value}</div>
-                <div className="text-sm text-muted-foreground">{label}</div>
+              <Card key={label} className="p-3 sm:p-6 text-center bg-card/40 backdrop-blur-md border-border/20">
+                <Icon className={cn("w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3", color)} />
+                <div className="text-lg sm:text-2xl font-light text-foreground mb-1">{value}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">{label}</div>
               </Card>
             ))}
           </div>

@@ -38,12 +38,13 @@ export const SoulPrint = ({ className, isActive = false, intensity = 0.5, harmon
   };
 
   return (
-    <div className={cn("relative w-48 h-48 flex items-center justify-center", className)}>
+    <div className={cn("relative w-32 h-32 sm:w-48 sm:h-48 flex items-center justify-center", className)}>
       <svg 
-        width="200" 
-        height="200" 
+        width="100%" 
+        height="100%" 
         viewBox="0 0 200 200" 
         className="absolute inset-0"
+        style={{ maxWidth: '200px', maxHeight: '200px' }}
       >
         <defs>
           <radialGradient id="soulGradient" cx="50%" cy="50%" r="50%">

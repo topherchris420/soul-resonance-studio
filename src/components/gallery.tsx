@@ -92,21 +92,21 @@ export const Gallery = ({ userSoulPrints = [], onExplore }: GalleryProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-cosmic p-8">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <div className="min-h-screen bg-gradient-cosmic p-4 sm:p-8 pt-20 sm:pt-24">
+      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
         {/* Header */}
-        <div className="text-center space-y-6">
-          <h1 className="text-5xl font-thin text-foreground tracking-wider">
+        <div className="text-center space-y-4 sm:space-y-6">
+          <h1 className="text-3xl sm:text-5xl font-thin text-foreground tracking-wider">
             Soul Gallery
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
             Explore the cosmic tapestry of biometric resonance. Discover harmonic affinities 
             and witness the collective evolution of human expression.
           </p>
         </div>
 
         {/* View Mode Toggle */}
-        <div className="flex justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
           {[
             { mode: 'curated' as const, icon: Eye, label: 'Curated Resonance' },
             { mode: 'affinities' as const, icon: Heart, label: 'Harmonic Affinities' },
@@ -117,31 +117,32 @@ export const Gallery = ({ userSoulPrints = [], onExplore }: GalleryProps) => {
               variant={viewMode === mode ? "default" : "outline"}
               onClick={() => setViewMode(mode)}
               className={cn(
-                "px-6 py-3 transition-all duration-500",
+                "flex-1 sm:flex-none px-4 sm:px-6 py-3 transition-all duration-500 text-sm sm:text-base",
                 viewMode === mode && "shadow-glow-secondary bg-gradient-harmonic"
               )}
             >
-              <Icon className="w-5 h-5 mr-2" />
-              {label}
+              <Icon className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <span className="hidden sm:inline">{label}</span>
+              <span className="sm:hidden">{mode === 'curated' ? 'Curated' : mode === 'affinities' ? 'Affinities' : 'Yours'}</span>
             </Button>
           ))}
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           {getCurrentPrints().map((soulPrint) => (
             <Card 
               key={soulPrint.id}
-              className="relative group overflow-hidden border-border/20 bg-card/40 backdrop-blur-md hover:shadow-cosmic transition-all duration-700 cursor-pointer"
+              className="relative group overflow-hidden border-border/20 bg-card/40 backdrop-blur-md hover:shadow-cosmic transition-all duration-700 cursor-pointer active:scale-95"
               onClick={() => onExplore?.(soulPrint)}
             >
-              <div className="p-6 space-y-6">
+              <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                 {/* Soul Print Visualization */}
                 <div className="flex justify-center">
                   <SoulPrint
                     intensity={soulPrint.biometricData.intensity}
                     harmonics={soulPrint.biometricData.harmonics}
-                    className="scale-75 group-hover:scale-90 transition-transform duration-500"
+                    className="scale-75 sm:scale-75 group-hover:scale-90 group-active:scale-95 transition-transform duration-500"
                   />
                 </div>
 

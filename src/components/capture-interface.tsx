@@ -102,21 +102,21 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
   };
 
   return (
-    <div className="min-h-screen bg-gradient-cosmic flex flex-col items-center justify-center p-8">
-      <div className="max-w-4xl w-full space-y-12 text-center">
+    <div className="min-h-screen bg-gradient-cosmic flex flex-col items-center justify-center p-4 sm:p-8">
+      <div className="max-w-4xl w-full space-y-8 sm:space-y-12 text-center">
         {/* Header */}
-        <div className="space-y-4">
-          <h1 className="text-6xl font-thin text-foreground tracking-wider">
+        <div className="space-y-3 sm:space-y-4">
+          <h1 className="text-4xl sm:text-6xl font-thin text-foreground tracking-wider">
             Aethel
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
             Breathe into the cosmic resonance. Let your biometric essence 
             become art, sound, and infinite expression.
           </p>
         </div>
 
         {/* Capture Mode Selection */}
-        <div className="flex justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
           {[
             { mode: 'audio' as const, icon: Mic, label: 'Voice Resonance' },
             { mode: 'video' as const, icon: Camera, label: 'Facial Harmonics' },
@@ -128,23 +128,23 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
               onClick={() => setCaptureMode(mode)}
               disabled={isCapturing}
               className={cn(
-                "px-8 py-6 text-lg transition-all duration-500",
+                "flex-1 sm:flex-none px-4 sm:px-8 py-4 sm:py-6 text-sm sm:text-lg transition-all duration-500",
                 captureMode === mode && "shadow-glow-primary bg-gradient-soul"
               )}
             >
-              <Icon className="w-6 h-6 mr-3" />
-              {label}
+              <Icon className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+              <span className="text-xs sm:text-base">{label}</span>
             </Button>
           ))}
         </div>
 
         {/* Soul Print Visualization */}
-        <div className="flex flex-col items-center space-y-8">
+        <div className="flex flex-col items-center space-y-6 sm:space-y-8">
           <SoulPrint
             isActive={isCapturing}
             intensity={biometricData.intensity}
             harmonics={biometricData.harmonics}
-            className="scale-150"
+            className="scale-110 sm:scale-150"
           />
           
           {isCapturing && (
@@ -171,36 +171,36 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
 
         {/* Video Preview */}
         {captureMode === 'video' && isCapturing && (
-          <div className="flex justify-center">
+          <div className="flex justify-center px-4">
             <video
               ref={videoRef}
               autoPlay
               muted
-              className="w-96 h-72 rounded-2xl border border-border/20 shadow-cosmic"
+              className="w-full max-w-sm sm:w-96 h-48 sm:h-72 rounded-2xl border border-border/20 shadow-cosmic"
             />
           </div>
         )}
 
         {/* Capture Controls */}
-        <div className="flex justify-center gap-6">
+        <div className="flex justify-center gap-4 sm:gap-6 px-4">
           {!isCapturing ? (
             <Button
               onClick={startCapture}
               size="lg"
-              className="px-12 py-6 text-xl bg-gradient-soul hover:shadow-glow-primary transition-all duration-500"
+              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 text-lg sm:text-xl bg-gradient-soul hover:shadow-glow-primary transition-all duration-500"
             >
-              <Play className="w-8 h-8 mr-4" />
-              Begin Resonance Capture
+              <Play className="w-6 h-6 sm:w-8 sm:h-8 mr-3 sm:mr-4" />
+              <span className="text-sm sm:text-base">Begin Resonance Capture</span>
             </Button>
           ) : (
             <Button
               onClick={stopCapture}
               size="lg"
               variant="destructive"
-              className="px-12 py-6 text-xl transition-all duration-500"
+              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 text-lg sm:text-xl transition-all duration-500"
             >
-              <Square className="w-8 h-8 mr-4" />
-              Crystallize Soul Print
+              <Square className="w-6 h-6 sm:w-8 sm:h-8 mr-3 sm:mr-4" />
+              <span className="text-sm sm:text-base">Crystallize Soul Print</span>
             </Button>
           )}
         </div>
