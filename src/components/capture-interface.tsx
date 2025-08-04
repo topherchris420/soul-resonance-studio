@@ -247,7 +247,10 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
             <Button
               key={mode}
               variant={captureMode === mode ? "default" : "outline"}
-              onClick={() => setCaptureMode(mode)}
+              onClick={() => {
+                console.log('Mode button clicked:', mode);
+                setCaptureMode(mode);
+              }}
               disabled={isCapturing}
               className={cn(
                 "flex-1 sm:flex-none px-4 sm:px-8 py-4 sm:py-6 text-sm sm:text-lg transition-all duration-500 flex flex-col gap-1",
