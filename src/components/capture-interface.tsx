@@ -90,6 +90,7 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
   }, [isCapturing, biometricData, playBiometricSounds]);
 
   const startCapture = async () => {
+    console.log('Starting capture with mode:', captureMode);
     try {
       let stream: MediaStream;
       
