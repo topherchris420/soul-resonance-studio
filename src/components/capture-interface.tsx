@@ -224,79 +224,169 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
   };
 
   return (
-    <div className="min-h-screen bg-gradient-cosmic flex flex-col items-center justify-center p-4 sm:p-8">
-      <div className="max-w-4xl w-full space-y-8 sm:space-y-12 text-center">
+    <div className="min-h-screen bg-gradient-cosmic flex flex-col items-center justify-center p-4 sm:p-8 relative overflow-hidden">
+      <div className="max-w-4xl w-full space-y-8 sm:space-y-12 text-center relative z-10">
         {/* Header */}
-        <div className="space-y-3 sm:space-y-4">
-          <h1 className="text-4xl sm:text-6xl font-thin text-foreground tracking-wider">
+        <div className="space-y-3 sm:space-y-4 animate-float-up">
+          <h1 className="text-4xl sm:text-6xl font-thin text-foreground tracking-wider animate-glow-intensify">
             Aethel
           </h1>
           <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
             Transform your biometric essence into evolving audiovisual expressions.
-            Real voice, facial, and ambient pattern recognition.
+            <br />
+            <span className="text-accent font-medium">Real voice, facial, and ambient pattern recognition.</span>
           </p>
+          
+          {/* Visual Status Indicator */}
+          <div className="flex justify-center items-center gap-2 mt-4">
+            <div className={cn(
+              "w-2 h-2 rounded-full transition-all duration-500",
+              isCapturing ? "bg-accent animate-soul-pulse" : "bg-muted"
+            )} />
+            <span className="text-xs text-muted-foreground">
+              {isCapturing ? `${captureMode === 'audio' ? '🎤' : captureMode === 'video' ? '📹' : '🌊'} Capturing biometric essence...` : 'Ready to capture your soul print'}
+            </span>
+          </div>
         </div>
 
         {/* Capture Mode Selection */}
-        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
-          {[
-            { mode: 'audio' as const, icon: Mic, label: 'Voice Resonance', desc: 'Real microphone analysis' },
-            { mode: 'video' as const, icon: Camera, label: 'Facial Harmonics', desc: 'Live camera capture' },
-            { mode: 'ambient' as const, icon: Play, label: 'Ambient Rhythms', desc: 'Environmental sounds' }
-          ].map(({ mode, icon: Icon, label, desc }) => (
-            <Button
-              key={mode}
-              variant={captureMode === mode ? "default" : "outline"}
-              onClick={() => {
-                console.log('Mode button clicked:', mode);
-                setCaptureMode(mode);
-              }}
-              disabled={isCapturing}
-              className={cn(
-                "flex-1 sm:flex-none px-4 sm:px-8 py-4 sm:py-6 text-sm sm:text-lg transition-all duration-500 flex flex-col gap-1",
-                captureMode === mode && "shadow-glow-primary bg-gradient-soul"
-              )}
-            >
-              <div className="flex items-center gap-2">
-                <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                <span className="text-xs sm:text-base font-medium">{label}</span>
-              </div>
-              <span className="text-xs text-muted-foreground hidden sm:block">{desc}</span>
-            </Button>
-          ))}
+        <div className="space-y-4">
+          <h2 className="text-lg sm:text-xl text-foreground/80 font-light">Choose Your Biometric Input</h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
+            {[
+              { mode: 'audio' as const, icon: Mic, label: 'Voice Resonance', desc: 'Real microphone analysis', color: 'primary' },
+              { mode: 'video' as const, icon: Camera, label: 'Facial Harmonics', desc: 'Live camera capture', color: 'secondary' },
+              { mode: 'ambient' as const, icon: Play, label: 'Ambient Rhythms', desc: 'Environmental sounds', color: 'accent' }
+            ].map(({ mode, icon: Icon, label, desc, color }, index) => (
+              <Button
+                key={mode}
+                variant={captureMode === mode ? "default" : "outline"}
+                onClick={() => {
+                  console.log('Mode button clicked:', mode);
+                  setCaptureMode(mode);
+                }}
+                disabled={isCapturing}
+                className={cn(
+                  "group flex-1 sm:flex-none px-4 sm:px-8 py-6 sm:py-8 text-sm sm:text-lg button-cosmic flex flex-col gap-2 relative overflow-hidden",
+                  "border-2 border-border/20 hover:border-border/40",
+                  captureMode === mode && cn(
+                    "shadow-glow-primary bg-gradient-soul border-primary/50 animate-mode-select",
+                    color === 'primary' && "shadow-glow-primary",
+                    color === 'secondary' && "shadow-glow-secondary", 
+                    color === 'accent' && "shadow-glow-accent"
+                  ),
+                  !isCapturing && "hover:animate-soul-pulse"
+                )}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Selection indicator */}
+                {captureMode === mode && (
+                  <div className="absolute top-2 right-2 w-3 h-3 bg-accent rounded-full animate-soul-pulse" />
+                )}
+                
+                <div className="flex items-center gap-3">
+                  <Icon className={cn(
+                    "w-6 h-6 sm:w-7 sm:h-7 transition-all duration-300",
+                    captureMode === mode ? "text-primary-foreground" : "text-foreground/70 group-hover:text-foreground"
+                  )} />
+                  <span className="text-sm sm:text-base font-medium">{label}</span>
+                </div>
+                <span className={cn(
+                  "text-xs transition-all duration-300",
+                  captureMode === mode ? "text-primary-foreground/80" : "text-muted-foreground group-hover:text-foreground/60"
+                )}>{desc}</span>
+                
+                {/* Hover effect overlay */}
+                <div className="absolute inset-0 bg-gradient-soul opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+              </Button>
+            ))}
+          </div>
         </div>
 
         {/* Soul Print Visualization */}
         <div className="flex flex-col items-center space-y-6 sm:space-y-8">
-          <SoulPrint
-            isActive={isCapturing}
-            intensity={biometricData.intensity}
-            harmonics={biometricData.harmonics}
-            className="scale-110 sm:scale-150"
-          />
+          <div className="relative">
+            {/* Cosmic aura around soul print */}
+            <div className={cn(
+              "absolute inset-0 rounded-full transition-all duration-1000",
+              isCapturing ? "animate-soul-pulse shadow-glow-primary" : "opacity-30"
+            )} style={{ transform: 'scale(1.5)' }} />
+            
+            <SoulPrint
+              isActive={isCapturing}
+              intensity={biometricData.intensity}
+              harmonics={biometricData.harmonics}
+              className={cn(
+                "scale-110 sm:scale-150 transition-all duration-500",
+                isCapturing && "animate-glow-intensify"
+              )}
+            />
+            
+            {/* Central energy indicator */}
+            {isCapturing && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-4 h-4 bg-accent rounded-full animate-soul-pulse opacity-80" />
+              </div>
+            )}
+          </div>
           
           {isCapturing && (
-            <div className="space-y-4 text-center">
-              <div className="text-sm text-muted-foreground font-mono">
-                <div>Intensity: {(biometricData.intensity * 100).toFixed(1)}%</div>
-                <div>Resonance: {(biometricData.resonance * 100).toFixed(1)}%</div>
-                <div className="text-xs mt-1 text-accent">
-                  {captureMode === 'audio' && "🎤 Live voice analysis"}
-                  {captureMode === 'video' && "📹 Real-time facial metrics"}
-                  {captureMode === 'ambient' && "🌊 Ambient pattern detection"}
+            <div className="space-y-6 text-center animate-float-up backdrop-cosmic rounded-2xl p-6 border border-border/20">
+              <div className="grid grid-cols-2 gap-4 text-sm font-mono">
+                <div className="space-y-2">
+                  <div className="text-muted-foreground">Intensity</div>
+                  <div className="text-lg text-primary font-semibold">
+                    {(biometricData.intensity * 100).toFixed(1)}%
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-muted-foreground">Resonance</div>
+                  <div className="text-lg text-secondary font-semibold">
+                    {(biometricData.resonance * 100).toFixed(1)}%
+                  </div>
                 </div>
               </div>
-              <div className="flex justify-center gap-2">
-                {biometricData.harmonics.map((harmonic, index) => (
-                  <div
-                    key={index}
-                    className="w-2 h-8 bg-gradient-soul rounded-full opacity-70 animate-harmonic-wave"
-                    style={{
-                      transform: `scaleY(${harmonic})`,
-                      animationDelay: `${index * 0.1}s`
-                    }}
-                  />
-                ))}
+              
+              <div className="flex items-center justify-center gap-2 text-xs text-accent font-medium">
+                {captureMode === 'audio' && (
+                  <>
+                    <Mic className="w-4 h-4 animate-soul-pulse" />
+                    <span>Live voice analysis active</span>
+                  </>
+                )}
+                {captureMode === 'video' && (
+                  <>
+                    <Camera className="w-4 h-4 animate-soul-pulse" />
+                    <span>Real-time facial metrics</span>
+                  </>
+                )}
+                {captureMode === 'ambient' && (
+                  <>
+                    <Play className="w-4 h-4 animate-soul-pulse" />
+                    <span>Ambient pattern detection</span>
+                  </>
+                )}
+              </div>
+              
+              {/* Harmonic visualizer */}
+              <div className="space-y-2">
+                <div className="text-xs text-muted-foreground">Harmonic Frequencies</div>
+                <div className="flex justify-center gap-1">
+                  {biometricData.harmonics.map((harmonic, index) => (
+                    <div key={index} className="flex flex-col items-center gap-1">
+                      <div
+                        className="w-3 h-12 bg-gradient-soul rounded-full opacity-80 animate-harmonic-wave"
+                        style={{
+                          transform: `scaleY(${harmonic})`,
+                          animationDelay: `${index * 0.1}s`
+                        }}
+                      />
+                      <div className="text-xs text-muted-foreground/60 font-mono">
+                        {index + 1}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
@@ -316,34 +406,67 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
         )}
 
         {/* Capture Controls */}
-        <div className="flex justify-center gap-4 sm:gap-6 px-4">
+        <div className="flex flex-col items-center gap-6 px-4">
           {!isCapturing ? (
-            <Button
-              onClick={startCapture}
-              size="lg"
-              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 text-lg sm:text-xl bg-gradient-soul hover:shadow-glow-primary transition-all duration-500"
-            >
-              <Play className="w-6 h-6 sm:w-8 sm:h-8 mr-3 sm:mr-4" />
-              <span className="text-sm sm:text-base">Begin Real Capture</span>
-            </Button>
+            <div className="space-y-4 text-center">
+              <Button
+                onClick={startCapture}
+                size="lg"
+                className="w-full sm:w-auto px-12 sm:px-16 py-6 sm:py-8 text-xl sm:text-2xl bg-gradient-soul button-soul relative overflow-hidden group border-2 border-primary/30"
+              >
+                {/* Animated background */}
+                <div className="absolute inset-0 bg-gradient-soul opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                
+                <Play className="w-8 h-8 sm:w-10 sm:h-10 mr-4 sm:mr-6 group-hover:animate-soul-pulse" />
+                <span className="font-medium tracking-wide">Begin Soul Capture</span>
+                
+                {/* Glow effect */}
+                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-glow-primary" />
+              </Button>
+              
+              <p className="text-sm text-muted-foreground max-w-md">
+                Click to start capturing your unique biometric signature in {captureMode === 'audio' ? 'voice' : captureMode === 'video' ? 'facial' : 'ambient'} mode
+              </p>
+            </div>
           ) : (
-            <Button
-              onClick={stopCapture}
-              size="lg"
-              variant="destructive"
-              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 text-lg sm:text-xl transition-all duration-500"
-            >
-              <Square className="w-6 h-6 sm:w-8 sm:h-8 mr-3 sm:mr-4" />
-              <span className="text-sm sm:text-base">Crystallize Soul Print</span>
-            </Button>
+            <div className="space-y-4 text-center">
+              <Button
+                onClick={stopCapture}
+                size="lg"
+                variant="destructive"
+                className="w-full sm:w-auto px-12 sm:px-16 py-6 sm:py-8 text-xl sm:text-2xl button-cosmic relative overflow-hidden group border-2 border-destructive/30"
+              >
+                <Square className="w-8 h-8 sm:w-10 sm:h-10 mr-4 sm:mr-6 group-hover:animate-soul-pulse" />
+                <span className="font-medium tracking-wide">Crystallize Soul Print</span>
+              </Button>
+              
+              <p className="text-sm text-accent animate-soul-pulse">
+                ✨ Your biometric essence is being captured... Click to finalize your Soul Print
+              </p>
+            </div>
           )}
         </div>
 
-        {/* Permission Notice */}
+        {/* Permission Notice & Tips */}
         {!isCapturing && (
-          <div className="text-xs text-muted-foreground max-w-md mx-auto px-4">
-            This app requires {captureMode === 'audio' ? 'microphone' : captureMode === 'video' ? 'camera' : 'audio'} permissions 
-            to capture real biometric data. Your data never leaves your device.
+          <div className="space-y-4 text-center">
+            <div className="backdrop-cosmic rounded-2xl p-4 border border-border/20 max-w-lg mx-auto">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="w-2 h-2 bg-accent rounded-full animate-soul-pulse" />
+                <span className="text-sm font-medium text-accent">Privacy Protected</span>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                This app requires {captureMode === 'audio' ? 'microphone' : captureMode === 'video' ? 'camera' : 'audio'} permissions 
+                to capture real biometric data. All processing happens locally - your data never leaves your device.
+              </p>
+            </div>
+            
+            {/* Mode-specific tips */}
+            <div className="text-xs text-muted-foreground/80 max-w-md mx-auto">
+              {captureMode === 'audio' && "💡 Tip: Speak naturally or make sounds for best voice resonance capture"}
+              {captureMode === 'video' && "💡 Tip: Look directly at the camera and try different expressions"}
+              {captureMode === 'ambient' && "💡 Tip: Ambient mode detects environmental sound patterns"}
+            </div>
           </div>
         )}
 
