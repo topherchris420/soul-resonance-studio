@@ -348,11 +348,11 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
         )}
 
         {/* Ambient Cosmic Particles */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
           {Array.from({ length: 20 }).map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-accent/30 rounded-full animate-cosmic-drift"
+              className="absolute w-1 h-1 bg-accent/30 rounded-full animate-cosmic-drift pointer-events-none"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
