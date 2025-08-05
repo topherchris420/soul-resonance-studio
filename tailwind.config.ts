@@ -88,47 +88,87 @@ export default {
 				'soul-pulse': {
 					'0%, 100%': {
 						transform: 'scale(1)',
-						opacity: '0.7'
+						opacity: '0.7',
+						filter: 'brightness(1)'
 					},
 					'50%': {
 						transform: 'scale(1.1)',
-						opacity: '1'
+						opacity: '1',
+						filter: 'brightness(1.3)'
 					}
 				},
 				'cosmic-drift': {
 					'0%': {
-						transform: 'translateX(0) translateY(0) rotate(0deg)'
+						transform: 'translateX(0) translateY(0) rotate(0deg)',
+						opacity: '0.6'
 					},
-					'33%': {
-						transform: 'translateX(10px) translateY(-10px) rotate(120deg)'
+					'25%': {
+						transform: 'translateX(15px) translateY(-10px) rotate(90deg)',
+						opacity: '0.8'
 					},
-					'66%': {
-						transform: 'translateX(-5px) translateY(5px) rotate(240deg)'
+					'50%': {
+						transform: 'translateX(5px) translateY(15px) rotate(180deg)',
+						opacity: '1'
+					},
+					'75%': {
+						transform: 'translateX(-10px) translateY(-5px) rotate(270deg)',
+						opacity: '0.8'
 					},
 					'100%': {
-						transform: 'translateX(0) translateY(0) rotate(360deg)'
+						transform: 'translateX(0) translateY(0) rotate(360deg)',
+						opacity: '0.6'
 					}
 				},
 				'biometric-flow': {
 					'0%': {
-						backgroundPosition: '0% 50%'
+						backgroundPosition: '0% 50%',
+						opacity: '0.6'
 					},
 					'50%': {
-						backgroundPosition: '100% 50%'
+						backgroundPosition: '100% 50%',
+						opacity: '1'
 					},
 					'100%': {
-						backgroundPosition: '0% 50%'
+						backgroundPosition: '0% 50%',
+						opacity: '0.6'
 					}
 				},
 				'harmonic-wave': {
 					'0%': {
-						transform: 'translateY(0px) scale(1)'
+						transform: 'translateY(0px) scale(1)',
+						opacity: '0.8'
 					},
 					'50%': {
-						transform: 'translateY(-20px) scale(1.05)'
+						transform: 'translateY(-20px) scale(1.05)',
+						opacity: '1'
 					},
 					'100%': {
-						transform: 'translateY(0px) scale(1)'
+						transform: 'translateY(0px) scale(1)',
+						opacity: '0.8'
+					}
+				},
+				'neural-sync': {
+					'0%': {
+						transform: 'scale(1)',
+						filter: 'brightness(1)'
+					},
+					'50%': {
+						transform: 'scale(1.02)',
+						filter: 'brightness(1.2)'
+					},
+					'100%': {
+						transform: 'scale(1)',
+						filter: 'brightness(1)'
+					}
+				},
+				'ethereal-fade': {
+					'0%, 100%': {
+						opacity: '0.3',
+						transform: 'scale(0.98)'
+					},
+					'50%': {
+						opacity: '0.7',
+						transform: 'scale(1.02)'
 					}
 				}
 			},
@@ -138,7 +178,9 @@ export default {
 				'soul-pulse': 'soul-pulse 3s ease-in-out infinite',
 				'cosmic-drift': 'cosmic-drift 8s ease-in-out infinite',
 				'biometric-flow': 'biometric-flow 6s ease-in-out infinite',
-				'harmonic-wave': 'harmonic-wave 4s ease-in-out infinite'
+				'harmonic-wave': 'harmonic-wave 4s ease-in-out infinite',
+				'neural-sync': 'neural-sync 6s ease-in-out infinite',
+				'ethereal-fade': 'ethereal-fade 10s ease-in-out infinite'
 			},
 			backgroundImage: {
 				'gradient-cosmic': 'var(--gradient-cosmic)',

@@ -267,17 +267,15 @@ export const CaptureInterface = ({ onSoulPrintGenerated }: CaptureInterfaceProps
                 }}
                 disabled={isCapturing}
                 className={cn(
-                  "group flex-1 sm:flex-none px-4 sm:px-8 py-6 sm:py-8 text-sm sm:text-lg button-cosmic flex flex-col gap-2 relative overflow-hidden",
-                  "border-2 border-border/20 hover:border-border/40",
-                  captureMode === mode && cn(
-                    "shadow-glow-primary bg-gradient-soul border-primary/50 animate-mode-select",
-                    color === 'primary' && "shadow-glow-primary",
-                    color === 'secondary' && "shadow-glow-secondary", 
-                    color === 'accent' && "shadow-glow-accent"
-                  ),
-                  !isCapturing && "hover:animate-soul-pulse"
+                  "group flex-1 sm:flex-none px-4 sm:px-8 py-6 sm:py-8 text-sm sm:text-lg flex flex-col gap-2 relative overflow-hidden border-2 transition-all duration-500",
+                  captureMode === mode 
+                    ? "shadow-glow-intense animate-neural-sync bg-gradient-neural border-primary/50" 
+                    : "hover:shadow-glow-secondary hover:scale-105 hover:border-primary/30 border-border/40",
+                  color === 'primary' && captureMode === mode && "bg-gradient-neural",
+                  color === 'secondary' && captureMode === mode && "bg-gradient-harmonic", 
+                  color === 'accent' && captureMode === mode && "bg-gradient-biometric"
                 )}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Selection indicator */}
                 {captureMode === mode && (
