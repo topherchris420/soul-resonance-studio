@@ -171,13 +171,4 @@ src/
 
 This project is licensed under the MIT License.
 
-## 🌟 Acknowledgments
-
-- Built with [Lovable](https://lovable.dev) - AI-powered web development
-- Design inspired by cosmic and biometric themes
-- Audio synthesis powered by [Tone.js](https://tonejs.github.io/)
-- UI components from [shadcn/ui](https://ui.shadcn.com/)
-
----
-
 **Experience the cosmos within** ✨
